@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be My Valentine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Dancing+Script:wght@400;700&amp;family=Cormorant+Garamond:wght@300;400;600&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    .font-playfair { font-family: 'Playfair Display', serif; }
+    .font-dancing { font-family: 'Dancing Script', cursive; }
+    .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 107, 129, 0.6)); }
+      50% { filter: drop-shadow(0 0 40px rgba(255, 107, 129, 0.9)); }
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1) rotate(180deg); }
+    }
+    
+    @keyframes rise {
+      0% { transform: translateY(100%) scale(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100%) scale(1); opacity: 0; }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.3); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.3); }
+      70% { transform: scale(1); }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    
+    @keyframes rotate-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes slideInFromLeft {
+      from { opacity: 0; transform: translateX(-100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInFromRight {
+      from { opacity: 0; transform: translateX(100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-15px) scale(1.05); }
+    }
+    
+    @keyframes bloom {
+      0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+      50% { transform: scale(1.1) rotate(10deg); }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    
+    @keyframes textGlow {
+      0%, 100% { text-shadow: 0 0 10px rgba(255, 182, 193, 0.5), 0 0 20px rgba(255, 107, 129, 0.3); }
+      50% { text-shadow: 0 0 20px rgba(255, 182, 193, 0.8), 0 0 40px rgba(255, 107, 129, 0.6), 0 0 60px rgba(255, 107, 129, 0.4); }
+    }
+    
+    @keyframes heartPulse {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.15); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.08); }
+    }
+    
+    @keyframes twirl {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.2); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+    
+    @keyframes petalFall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-5deg) scale(1); }
+      50% { transform: rotate(5deg) scale(1.1); }
+    }
+    
+    @keyframes bounce-cute {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-15px) scale(1.1); }
+    }
+    
+    @keyframes spin-slow {
+      from { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.15); }
+      to { transform: rotate(360deg) scale(1); }
+    }
+    
+    @keyframes pulse-big {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+    
+    @keyframes swing {
+      0%, 100% { transform: rotate(0deg); transform-origin: top center; }
+      25% { transform: rotate(15deg); }
+      75% { transform: rotate(-15deg); }
+    }
+    
+    @keyframes zoom-bounce {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.2); }
+      50% { transform: scale(0.9); }
+      75% { transform: scale(1.15); }
+    }
+    
+    .wiggle { animation: wiggle 1s ease-in-out infinite; }
+    .bounce-cute { animation: bounce-cute 1.5s ease-in-out infinite; }
+    .spin-slow { animation: spin-slow 4s ease-in-out infinite; }
+    .pulse-big { animation: pulse-big 1.8s ease-in-out infinite; }
+    .swing { animation: swing 2s ease-in-out infinite; }
+    .zoom-bounce { animation: zoom-bounce 2s ease-in-out infinite; }
+    
+    .petal {
+      position: absolute;
+      animation: petalFall linear infinite;
+      pointer-events: none;
+    }
+    
+    .fade-in-scale {
+      animation: fadeInScale 0.8s ease-out forwards;
+    }
+    
+    .slide-in-left {
+      animation: slideInFromLeft 1s ease-out forwards;
+    }
+    
+    .slide-in-right {
+      animation: slideInFromRight 1s ease-out forwards;
+    }
+    
+    .gentle-float {
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+    
+    .bloom {
+      animation: bloom 1.2s ease-out forwards;
+    }
+    
+    .text-glow {
+      animation: textGlow 2s ease-in-out infinite;
+    }
+    
+    .heart-pulse {
+      animation: heartPulse 1.5s ease-in-out infinite;
+    }
+    
+    .twirl {
+      animation: twirl 3s ease-in-out infinite;
+    }
+    
+    .twinkle {
+      animation: twinkle 2s ease-in-out infinite;
+    }
+    
+    .rotate-slow {
+      animation: rotate-slow 20s linear infinite;
+    }
+    
+    .floating { animation: float 6s ease-in-out infinite; }
+    .floating-delay-1 { animation: float 6s ease-in-out infinite 1s; }
+    .floating-delay-2 { animation: float 6s ease-in-out infinite 2s; }
+    .floating-delay-3 { animation: float 6s ease-in-out infinite 3s; }
+    .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+    .heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+    
+    .sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      animation: sparkle 2s ease-in-out infinite;
+    }
+    
+    .rising-heart {
+      position: absolute;
+      animation: rise 8s linear infinite;
+      pointer-events: none;
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 1s ease-out forwards;
+    }
+    
+    .shimmer-text {
+      background: linear-gradient(90deg, #fff 0%, #ffd1dc 25%, #fff 50%, #ffd1dc 75%, #fff 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s linear infinite;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .romantic-card {
+      background: linear-gradient(135deg, rgba(255, 107, 129, 0.15) 0%, rgba(196, 69, 105, 0.15) 100%);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 182, 193, 0.3);
+    }
+    
+    .btn-yes {
+      background: linear-gradient(135deg, #ff6b81 0%, #ff4757 100%);
+      box-shadow: 0 10px 40px rgba(255, 107, 129, 0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-yes:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(255, 107, 129, 0.6);
+    }
+    
+    .btn-no {
+      background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+      box-shadow: 0 10px 40px rgba(108, 92, 231, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .btn-no:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(108, 92, 231, 0.6);
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+      20%, 40%, 60%, 80% { transform: translateX(10px); }
+    }
+    
+    @keyframes runAway {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0.7); }
+    }
+    
+    @keyframes shrink {
+      0% { transform: scale(1); }
+      100% { transform: scale(0.5); opacity: 0.5; }
+    }
+    
+    @keyframes grow {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.3); }
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .shake {
+      animation: shake 0.5s ease;
+    }
+    
+    .run-away {
+      animation: runAway 0.5s ease forwards;
+    }
+    
+    .shrink-btn {
+      animation: shrink 0.3s ease forwards;
+    }
+    
+    .grow-btn {
+      animation: grow 0.3s ease forwards;
+    }
+    
+    .bounce-btn {
+      animation: bounce 0.5s ease infinite;
+    }
+    
+    .envelope {
+      cursor: pointer;
+      transition: transform 0.6s ease;
+    }
+    
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+    
+    .envelope-flap {
+      transform-origin: top center;
+      transition: transform 0.6s ease;
+    }
+    
+    .envelope.opened .envelope-flap {
+      transform: rotateX(180deg);
+    }
+    
+    .letter {
+      transition: all 0.8s ease 0.3s;
+      transform: translateY(0);
+    }
+    
+    .envelope.opened .letter {
+      transform: translateY(-120px);
+    }
+    
+    .hidden-content {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+    }
+    
+    .show-content {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .confetti {
+      position: fixed;
+      pointer-events: none;
+      z-index: 100;
+    }
+    
+    .love-letter-line {
+      border-left: 3px solid rgba(255, 182, 193, 0.5);
+      padding-left: 1.5rem;
+      margin: 1.5rem 0;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="h-full w-full overflow-auto relative" style="background: linear-gradient(135deg, #1a0a0f 0%, #2d1f3d 50%, #1a0a0f 100%);"><!-- Floating Hearts Background -->
+   <div id="hearts-container" class="fixed inset-0 overflow-hidden pointer-events-none"></div><!-- Falling Rose Petals -->
+   <div id="petals-container" class="fixed inset-0 overflow-hidden pointer-events-none"></div><!-- Sparkles -->
+   <div class="fixed inset-0 pointer-events-none z-50">
+    <div class="sparkle" style="top: 10%; left: 20%;">
+     <svg width="10" height="10" viewbox="0 0 10 10">
+      <polygon points="5,0 6,4 10,5 6,6 5,10 4,6 0,5 4,4" fill="#ffd1dc" />
+     </svg>
+    </div>
+    <div class="sparkle" style="top: 20%; left: 80%; animation-delay: 0.5s;">
+     <svg width="10" height="10" viewbox="0 0 10 10">
+      <polygon points="5,0 6,4 10,5 6,6 5,10 4,6 0,5 4,4" fill="#fff" />
+     </svg>
+    </div>
+    <div class="sparkle" style="top: 60%; left: 15%; animation-delay: 1s;">
+     <svg width="10" height="10" viewbox="0 0 10 10">
+      <polygon points="5,0 6,4 10,5 6,6 5,10 4,6 0,5 4,4" fill="#ff6b81" />
+     </svg>
+    </div>
+    <div class="sparkle" style="top: 70%; left: 85%; animation-delay: 1.5s;">
+     <svg width="10" height="10" viewbox="0 0 10 10">
+      <polygon points="5,0 6,4 10,5 6,6 5,10 4,6 0,5 4,4" fill="#ffd1dc" />
+     </svg>
+    </div>
+    <div class="sparkle" style="top: 40%; left: 90%; animation-delay: 0.7s;">
+     <svg width="10" height="10" viewbox="0 0 10 10">
+      <polygon points="5,0 6,4 10,5 6,6 5,10 4,6 0,5 4,4" fill="#fff" />
+     </svg>
+    </div>
+    <div class="sparkle" style="top: 30%; left: 10%; animation-delay: 1.2s;">
+     <svg width="10" height="10" viewbox="0 0 10 10">
+      <polygon points="5,0 6,4 10,5 6,6 5,10 4,6 0,5 4,4" fill="#ffd1dc" />
+     </svg>
+    </div>
+    <div class="sparkle" style="top: 80%; left: 70%; animation-delay: 0.3s;">
+     <svg width="10" height="10" viewbox="0 0 10 10">
+      <polygon points="5,0 6,4 10,5 6,6 5,10 4,6 0,5 4,4" fill="#fff" />
+     </svg>
+    </div>
+    <div class="sparkle" style="top: 50%; left: 50%; animation-delay: 0.8s;">
+     <svg width="10" height="10" viewbox="0 0 10 10">
+      <polygon points="5,0 6,4 10,5 6,6 5,10 4,6 0,5 4,4" fill="#ff6b81" />
+     </svg>
+    </div>
+    <div class="sparkle" style="top: 25%; left: 45%; animation-delay: 0.4s;">
+     <svg width="10" height="10" viewbox="0 0 10 10">
+      <polygon points="5,0 6,4 10,5 6,6 5,10 4,6 0,5 4,4" fill="#ffd1dc" />
+     </svg>
+    </div>
+    <div class="sparkle" style="top: 65%; left: 30%; animation-delay: 1.8s;">
+     <svg width="10" height="10" viewbox="0 0 10 10">
+      <polygon points="5,0 6,4 10,5 6,6 5,10 4,6 0,5 4,4" fill="#fff" />
+     </svg>
+    </div>
+   </div><!-- Main Content -->
+   <div class="relative z-10 min-h-full flex flex-col items-center justify-center px-4 py-12"><!-- Initial View - Envelope -->
+    <div id="envelope-section" class="text-center">
+     <div class="mb-6 flex justify-center gap-4"><span class="text-6xl wiggle inline-block" style="animation-delay: 0s;">✨</span> <span class="text-5xl pulse-big inline-block">💕</span> <span class="text-6xl wiggle inline-block" style="animation-delay: 0.5s;">✨</span>
+     </div>
+     <p class="text-pink-200 font-dancing text-3xl mb-4 fade-in-up shimmer-text text-glow">A Love Letter Written From My Heart...</p>
+     <p class="text-pink-300/80 font-cormorant text-xl mb-8 fade-in-up" style="animation-delay: 0.2s;">To the one who means everything to me</p>
+     <div class="flex justify-center gap-8 mb-6"><span class="text-4xl bounce-cute" style="animation-delay: 0s;">🌹</span> <span class="text-4xl spin-slow" style="animation-delay: 0.3s;">💝</span> <span class="text-4xl bounce-cute" style="animation-delay: 0.6s;">🌹</span>
+     </div>
+     <div class="envelope relative w-72 h-48 mx-auto floating" onclick="openEnvelope()"><!-- Envelope Back -->
+      <div class="absolute inset-0 rounded-lg pulse-glow" style="background: linear-gradient(135deg, #ff6b81 0%, #c44569 100%); box-shadow: 0 20px 60px rgba(255, 107, 129, 0.5);"></div><!-- Letter inside -->
+      <div class="letter absolute left-4 right-4 top-4 bottom-4 rounded bg-white flex items-center justify-center">
+       <svg class="w-16 h-16 text-pink-500 heartbeat" viewbox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+       </svg>
+      </div><!-- Envelope Front -->
+      <div class="absolute bottom-0 left-0 right-0 h-28 rounded-b-lg" style="background: linear-gradient(135deg, #ff8a9b 0%, #ff6b81 100%);"></div><!-- Envelope Flap -->
+      <div class="envelope-flap absolute top-0 left-0 right-0 h-24 origin-top" style="background: linear-gradient(180deg, #ff6b81 0%, #ff8a9b 100%); clip-path: polygon(0 0, 50% 100%, 100% 0);"></div><!-- Heart Seal -->
+      <div class="absolute top-12 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full flex items-center justify-center z-10" style="background: linear-gradient(135deg, #c44569 0%, #a03050 100%); box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+       <svg class="w-6 h-6 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+       </svg>
+      </div>
+     </div>
+     <p class="text-pink-300/70 text-sm mt-6 font-playfair">Click to open and read my heart</p>
+    </div><!-- Revealed Content -->
+    <div id="message-section" class="hidden-content text-center max-w-3xl mx-auto w-full"><!-- Big Heart -->
+     <div class="mb-8 gentle-float">
+      <svg class="w-40 h-40 mx-auto pulse-glow heart-pulse" viewbox="0 0 24 24" fill="#ff6b81" style="filter: drop-shadow(0 0 30px rgba(255, 107, 129, 0.8));"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+      </svg>
+     </div><!-- Name -->
+     <h2 id="partner-name-display" class="font-dancing text-5xl md:text-6xl text-pink-200 mb-6 slide-in-left text-glow">My Dearest Love</h2><!-- Main Message -->
+     <h1 id="main-message-display" class="font-playfair text-5xl md:text-7xl font-bold shimmer-text mb-10 slide-in-right" style="animation-delay: 0.3s; text-shadow: 0 0 30px rgba(255, 182, 193, 0.6);">Will You Be My Valentine?</h1><!-- Decorative hearts around message -->
+     <div class="flex justify-center gap-12 mb-8"><span class="text-4xl zoom-bounce" style="animation-delay: 0s;">💖</span> <span class="text-5xl spin-slow" style="animation-delay: 0.5s;">✨</span> <span class="text-4xl zoom-bounce" style="animation-delay: 1s;">💖</span>
+     </div><!-- Romantic Love Letter Card -->
+     <div class="romantic-card rounded-3xl p-8 md:p-12 mb-8 max-w-2xl mx-auto floating-delay-1 text-left">
+      <div class="flex justify-center mb-8 gap-4"><span class="text-4xl swing">💝</span> <span class="text-5xl mx-2 pulse-big">💕</span> <span class="text-4xl wiggle">💑</span> <span class="text-5xl mx-2 bounce-cute">😘</span> <span class="text-4xl swing">💝</span>
+      </div><!-- Romantic Intro -->
+      <div class="love-letter-line">
+       <p id="romantic-intro-display" class="font-cormorant text-2xl md:text-3xl text-pink-100 leading-relaxed italic mb-6">From the moment I met you, my world changed forever. You brought colors to my gray skies and music to my silent days.</p>
+      </div><!-- Love Declaration -->
+      <div class="love-letter-line">
+       <p id="love-declaration-display" class="font-playfair text-2xl md:text-3xl text-pink-50 leading-relaxed font-semibold mb-6">I love you more than words could ever express. My heart beats your name with every pulse, and my soul sings your melody in every breath.</p>
+      </div><!-- Special Meaning -->
+      <div class="love-letter-line">
+       <p id="special-meaning-display" class="font-cormorant text-2xl md:text-3xl text-pink-100 leading-relaxed mb-6">You are not just special to me — you are my lifeline, my anchor, my guiding star. You are the reason I smile, the reason I dream, and the reason I believe in forever.</p>
+      </div><!-- Final Message -->
+      <div class="text-center mt-8">
+       <p id="final-message-display" class="font-dancing text-3xl md:text-4xl text-pink-200">Forever and always, my heart belongs to you ����</p>
+      </div>
+      <div class="flex justify-center gap-6 mt-8"><span class="text-3xl spin-slow">🌹</span> <span class="text-3xl zoom-bounce">💏</span> <span class="text-3xl wiggle">💫</span> <span class="text-3xl pulse-big">🤗</span> <span class="text-3xl spin-slow">🌹</span>
+      </div>
+     </div><!-- Buttons -->
+     <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mt-10"><button onclick="sayYes()" class="btn-yes text-white font-playfair text-2xl md:text-3xl font-semibold px-12 py-5 rounded-full flex items-center gap-3"> <span class="text-3xl">💏</span> Yes, Forever! <span class="text-3xl">🤗</span> </button> <button id="no-btn" onclick="tryToSayNo()" class="btn-no text-white font-playfair text-xl md:text-2xl font-semibold px-10 py-4 rounded-full flex items-center gap-3"> <span class="text-2xl">😢</span> Maybe No... <span class="text-2xl">💔</span> </button>
+     </div><!-- Playful message when trying to say no -->
+     <p id="no-message" class="text-pink-200 font-dancing text-2xl mt-6 opacity-0 transition-opacity duration-300"></p><!-- Small decorative hearts -->
+     <div class="flex justify-center gap-6 mt-10"><span class="text-pink-400 text-2xl floating">♥</span> <span class="text-pink-300 text-3xl floating-delay-1">♥</span> <span class="text-pink-400 text-2xl floating-delay-2">♥</span>
+     </div>
+    </div><!-- Celebration Section -->
+    <div id="celebration-section" class="hidden-content text-center">
+     <div class="mb-8 flex justify-center gap-6"><span class="text-7xl zoom-bounce inline-block">💕</span> <span class="text-8xl pulse-big inline-block">💏</span> <span class="text-7xl zoom-bounce inline-block">💕</span>
+     </div>
+     <h1 class="font-dancing text-6xl md:text-8xl text-pink-200 mb-6 text-glow bloom">You Said Yes!</h1>
+     <p class="font-playfair text-2xl md:text-3xl text-pink-100 mb-8 gentle-float">This is the happiest moment of my life!</p>
+     <div class="romantic-card rounded-3xl p-10 max-w-lg mx-auto gentle-float" style="box-shadow: 0 30px 80px rgba(255, 107, 129, 0.5); animation-delay: 0.3s;">
+      <p class="font-cormorant text-2xl text-pink-50 mb-4 italic">Our love story begins here and now...</p>
+      <p class="font-playfair text-xl text-pink-100 mb-6">Together forever, my love 💑</p>
+      <div class="flex justify-center gap-4 mt-6 text-4xl"><span class="spin-slow">🎉</span> <span class="wiggle">💏</span> <span class="bounce-cute">😘</span> <span class="zoom-bounce">🤗</span> <span class="spin-slow">🎉</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      partner_name: "My Dearest Love",
+      main_message: "Will You Be My Valentine?",
+      romantic_intro: "From the moment I met you, my world changed forever. You brought colors to my gray skies and music to my silent days.",
+      love_declaration: "I love you more than words could ever express. My heart beats your name with every pulse, and my soul sings your melody in every breath.",
+      special_meaning: "You are not just special to me — you are my lifeline, my anchor, my guiding star. You are the reason I smile, the reason I dream, and the reason I believe in forever.",
+      final_message: "Forever and always, my heart belongs to you 💖",
+      background_color: "#1a0a0f",
+      accent_color: "#ff6b81",
+      text_color: "#ffd1dc",
+      button_color: "#ff4757",
+      card_color: "rgba(255, 255, 255, 0.1)"
+    };
+
+    let config = { ...defaultConfig };
+
+    // Create floating hearts
+    function createFloatingHearts() {
+      const container = document.getElementById('hearts-container');
+      const heartSymbols = ['♥', '💕', '💖', '💗', '💓', '💝'];
+      
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'rising-heart';
+        heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+        heart.style.animationDelay = Math.random() * 8 + 's';
+        heart.style.opacity = Math.random() * 0.5 + 0.3;
+        heart.style.color = config.accent_color || defaultConfig.accent_color;
+        container.appendChild(heart);
+      }
+    }
+    
+    // Create falling rose petals
+    function createRosePetals() {
+      const container = document.getElementById('petals-container');
+      const petalColors = ['#ff6b81', '#ffb6c1', '#ffc0cb', '#ff69b4'];
+      
+      for (let i = 0; i < 12; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.textContent = '🌸';
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.fontSize = (Math.random() * 15 + 10) + 'px';
+        petal.style.animationDuration = (Math.random() * 5 + 8) + 's';
+        petal.style.animationDelay = Math.random() * 5 + 's';
+        petal.style.opacity = Math.random() * 0.4 + 0.4;
+        container.appendChild(petal);
+      }
+    }
+
+    // Open envelope animation
+    function openEnvelope() {
+      const envelope = document.querySelector('.envelope');
+      envelope.classList.add('opened');
+      
+      setTimeout(() => {
+        document.getElementById('envelope-section').style.display = 'none';
+        document.getElementById('message-section').classList.add('show-content');
+      }, 1000);
+    }
+
+    let noClickCount = 0;
+    const noMessages = [
+      "Are you sure? My heart is waiting... 🥺",
+      "Please reconsider... You mean the world to me 💝",
+      "My heart is breaking... Don't you feel our connection? 💔",
+      "Think about all our beautiful memories together... 🌟",
+      "Without you, my world loses its light... ��",
+      "You're making me cry... I need you so much 😭",
+      "There's no escape from our love! We're meant to be 💕",
+      "Our hearts are intertwined! You know it's true! 💖"
+    ];
+
+    function tryToSayNo() {
+      const noBtn = document.getElementById('no-btn');
+      const yesBtn = document.querySelector('.btn-yes');
+      const messageEl = document.getElementById('no-message');
+      
+      noClickCount++;
+      
+      // Show playful message
+      if (noClickCount <= noMessages.length) {
+        messageEl.textContent = noMessages[noClickCount - 1];
+        messageEl.style.opacity = '1';
+        setTimeout(() => {
+          messageEl.style.opacity = '0';
+        }, 2500);
+      }
+      
+      // Different magical effects based on click count
+      if (noClickCount === 1) {
+        // First click - shake
+        noBtn.classList.add('shake');
+        setTimeout(() => noBtn.classList.remove('shake'), 500);
+      } else if (noClickCount === 2) {
+        // Second click - button runs away
+        const tx = (Math.random() - 0.5) * 200;
+        const ty = (Math.random() - 0.5) * 200;
+        noBtn.style.setProperty('--tx', tx + 'px');
+        noBtn.style.setProperty('--ty', ty + 'px');
+        noBtn.classList.add('run-away');
+        setTimeout(() => {
+          noBtn.classList.remove('run-away');
+          noBtn.style.transform = '';
+        }, 500);
+      } else if (noClickCount === 3) {
+        // Third click - No button shrinks, Yes grows
+        noBtn.classList.add('shrink-btn');
+        yesBtn.classList.add('grow-btn');
+        setTimeout(() => {
+          noBtn.classList.remove('shrink-btn');
+          yesBtn.classList.remove('grow-btn');
+        }, 300);
+      } else if (noClickCount === 4) {
+        // Fourth click - Yes button starts bouncing
+        yesBtn.classList.add('bounce-btn');
+      } else if (noClickCount >= 5) {
+        // Fifth click and beyond - No button disappears, explosion of hearts
+        createHeartExplosion();
+        noBtn.style.display = 'none';
+        messageEl.textContent = "The universe has decided! Our love is inevitable! 💖✨";
+        messageEl.style.opacity = '1';
+        messageEl.style.fontSize = '2rem';
+        messageEl.style.fontWeight = 'bold';
+      }
+    }
+
+    function createHeartExplosion() {
+      const hearts = ['💕', '💖', '💗', '💓', '💝', '❤️', '💘', '💞', '💏', '😘', '🤗', '💑', '😍', '🥰'];
+      for (let i = 0; i < 40; i++) {
+        const heart = document.createElement('div');
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.position = 'fixed';
+        heart.style.left = '50%';
+        heart.style.top = '50%';
+        heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+        heart.style.pointerEvents = 'none';
+        heart.style.zIndex = '1000';
+        document.body.appendChild(heart);
+        
+        const angle = (Math.PI * 2 * i) / 40;
+        const velocity = Math.random() * 300 + 200;
+        const tx = Math.cos(angle) * velocity;
+        const ty = Math.sin(angle) * velocity;
+        
+        heart.animate([
+          { transform: 'translate(-50%, -50%) scale(0) rotate(0deg)', opacity: 1 },
+          { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(1.5) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+        ], {
+          duration: 1500,
+          easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+        }).onfinish = () => heart.remove();
+      }
+    }
+    
+    // Celebration with confetti
+    function sayYes() {
+      createConfetti();
+      
+      setTimeout(() => {
+        document.getElementById('message-section').classList.remove('show-content');
+        document.getElementById('message-section').classList.add('hidden-content');
+        document.getElementById('celebration-section').classList.add('show-content');
+      }, 500);
+    }
+
+    function createConfetti() {
+      const colors = ['#ff6b81', '#ffd1dc', '#fff', '#ff4757', '#c44569'];
+      const shapes = ['❤️', '💕', '✨', '💖', '🌹', '💝', '💫', '💏', '😘', '🤗', '💑', '😍', '🥰'];
+      
+      for (let i = 0; i < 60; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-50px';
+        confetti.style.fontSize = (Math.random() * 20 + 15) + 'px';
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(confetti);
+        
+        const duration = Math.random() * 3 + 2;
+        const xEnd = (Math.random() - 0.5) * 200;
+        
+        confetti.animate([
+          { top: '-50px', transform: `translateX(0) rotate(0deg)`, opacity: 1 },
+          { top: '100%', transform: `translateX(${xEnd}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+        ], {
+          duration: duration * 1000,
+          easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+        }).onfinish = () => confetti.remove();
+      }
+    }
+
+    async function onConfigChange(newConfig) {
+      config = { ...config, ...newConfig };
+      
+      // Update text content
+      document.getElementById('partner-name-display').textContent = config.partner_name || defaultConfig.partner_name;
+      document.getElementById('main-message-display').textContent = config.main_message || defaultConfig.main_message;
+      document.getElementById('romantic-intro-display').textContent = config.romantic_intro || defaultConfig.romantic_intro;
+      document.getElementById('love-declaration-display').textContent = config.love_declaration || defaultConfig.love_declaration;
+      document.getElementById('special-meaning-display').textContent = config.special_meaning || defaultConfig.special_meaning;
+      document.getElementById('final-message-display').textContent = config.final_message || defaultConfig.final_message;
+      
+      // Update colors
+      const wrapper = document.getElementById('app-wrapper');
+      const bgColor = config.background_color || defaultConfig.background_color;
+      wrapper.style.background = `linear-gradient(135deg, ${bgColor} 0%, #2d1f3d 50%, ${bgColor} 100%)`;
+      
+      // Update accent colors
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      document.querySelectorAll('.rising-heart').forEach(heart => {
+        heart.style.color = accentColor;
+      });
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => { config.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => config.button_color || defaultConfig.button_color,
+            set: (value) => { config.button_color = value; window.elementSdk.setConfig({ button_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["partner_name", config.partner_name || defaultConfig.partner_name],
+        ["main_message", config.main_message || defaultConfig.main_message],
+        ["romantic_intro", config.romantic_intro || defaultConfig.romantic_intro],
+        ["love_declaration", config.love_declaration || defaultConfig.love_declaration],
+        ["special_meaning", config.special_meaning || defaultConfig.special_meaning],
+        ["final_message", config.final_message || defaultConfig.final_message]
+      ]);
+    }
+
+    // Initialize
+    createFloatingHearts();
+    createRosePetals();
+    
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c7007b6c1f189df',t:'MTc2OTkzNDAzMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
